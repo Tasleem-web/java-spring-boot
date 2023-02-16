@@ -8,15 +8,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "employee")
-public class Employee {
+@Table(name = "student")
+public class Student {
 
-	public Employee() {
+	public Student() {
+		super();
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	@Column(name = "first_name", nullable = false)
 	private String firstName;
@@ -27,7 +28,7 @@ public class Employee {
 	@Column(name = "email")
 	private String email;
 
-	public Employee(long id, String firstName, String lastName, String email) {
+	public Student(Long id, String firstName, String lastName, String email) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -35,11 +36,11 @@ public class Employee {
 		this.email = email;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -69,7 +70,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
+		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
 
 }
