@@ -48,6 +48,7 @@ public class StudentController {
 
 	@DeleteMapping("/student/{id}")
 	public ResponseEntity<Map<String, String>> deleteStudent(@PathVariable("id") long id) {
+		studentService.deleteStudent(id);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("message", "Student is deleted!.");
 		return new ResponseEntity<Map<String, String>>(map, HttpStatus.OK);
