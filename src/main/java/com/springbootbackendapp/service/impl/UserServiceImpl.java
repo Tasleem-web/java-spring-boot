@@ -30,6 +30,8 @@ public class UserServiceImpl implements UserService {
 		existingUser.setName(user.getName());
 		existingUser.setAbout(user.getAbout());
 
+		userRepository.save(existingUser);
+		
 		return existingUser;
 	}
 

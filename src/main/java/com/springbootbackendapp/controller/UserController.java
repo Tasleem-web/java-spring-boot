@@ -18,6 +18,8 @@ import com.springbootbackendapp.dto.ApiResponse;
 import com.springbootbackendapp.model.User;
 import com.springbootbackendapp.service.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
@@ -26,7 +28,7 @@ public class UserController {
 	private UserService userService;
 
 	@PostMapping("/user")
-	public ResponseEntity<User> createUser(@RequestBody User user) {
+	public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 		System.out.println(user);
 		return new ResponseEntity<User>(userService.createUser(user), HttpStatus.CREATED);
 	}

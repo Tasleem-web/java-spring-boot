@@ -14,15 +14,15 @@ public class SpringbootBackendAppApplication {
 		System.out.println("=========== Application is started ===========");
 	}
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH")
-						.allowedOriginPatterns("*");
-			}
-		};
-	}
+    @Bean
+    WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH")
+                        .allowedOriginPatterns("*");
+            }
+        };
+    }
 
 }

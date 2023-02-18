@@ -6,6 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -20,14 +24,23 @@ public class User {
 	private int id;
 
 	@Column(name = "name", nullable = false, length = 100)
+	@NotEmpty
+	@Size(min = 4, message = "Username must be min 4 chars")
 	private String name;
 
-	@Column(name = "email", unique = true)
+	@Column(name = "email")
+	@Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")
+	@NotEmpty
+	@Size(message = "Email address is not valid.")
 	private String email;
 
 	@Column(name = "password")
+	@NotEmpty
+	@Size(min = 6, max = 12, message = "Password should have min 6 char and max 12 chars.")
 	private String password;
 
+	@NotEmpty
+	@Size(min = 4, message = "About must be min 4 chars")
 	@Column(name = "about")
 	private String about;
 
