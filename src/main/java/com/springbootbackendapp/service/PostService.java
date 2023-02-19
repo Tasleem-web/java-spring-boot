@@ -2,6 +2,7 @@ package com.springbootbackendapp.service;
 
 import java.util.List;
 
+import com.springbootbackendapp.dto.PostResponse;
 import com.springbootbackendapp.model.Post;
 
 public interface PostService {
@@ -10,7 +11,8 @@ public interface PostService {
 	Post createPost(Post post, Integer userId, Integer categoryId);
 
 //	get all
-	List<Post> getAllPosts();
+//	List<Post> getAllPosts(Integer pageNumber, Integer pageSize);
+	PostResponse getAllPosts(Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
 
 	// get all post by user
 	List<Post> getPostByUser(Integer userId);

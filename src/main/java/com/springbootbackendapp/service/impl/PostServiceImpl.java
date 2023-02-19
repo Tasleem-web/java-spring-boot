@@ -4,8 +4,13 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.springbootbackendapp.dto.PostResponse;
 import com.springbootbackendapp.exception.ResourceNotFoundException;
 import com.springbootbackendapp.model.Category;
 import com.springbootbackendapp.model.Post;
@@ -43,8 +48,26 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> getAllPosts() {
-		return postRepository.findAll();
+	public PostResponse getAllPosts(Integer pageNumber, Integer pageSize, String sortBy, String sortDir) {
+
+		Sort sort = (sortDir.equalsIgnoreCase("asc")) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+
+		System.out.println(sortDir);
+		Pageable p = PageRequest.of(pageNumber, pageSize, sort);
+		Page<Post> pagePost = postRepository.findAll(p);
+		List<Post> allPost = pagePost.getContent();
+
+		PostResponse postResponse = new PostResponse();
+		postResponse.setContent(allPost);
+		postResponse.setPageNumber(pagePost.getNumber());
+		postResponse.setPageSize(pagePost.getSize());
+		postResponse.setTotalElements(pagePost.getTotalElements());
+		postResponse.setPageSize(pagePost.getTotalPages());
+		postResponse.setLastPage(pagePost.isLast());
+
+		return postResponse;
+
+//		return postRepository.findAll();
 	}
 
 	@Override
