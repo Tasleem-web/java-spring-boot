@@ -11,17 +11,18 @@ public class SpringbootBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootBackendApplication.class, args);
+		System.out.println("=============== Applications Started ===============");
 	}
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE")
-						.allowedOriginPatterns("*").allowCredentials(true);
-			}
-		};
-	}
+//	@Bean
+//	WebMvcConfigurer corsConfigurer() {
+//		return new WebMvcConfigurer() {
+//			@Override
+//			public void addCorsMappings(CorsRegistry registry) {
+//				registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE")
+//						.allowedOriginPatterns("*").allowCredentials(true);
+//			}
+//		};
+//	}
 
 }
